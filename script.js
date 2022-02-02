@@ -8,10 +8,7 @@ service1 = prompt('Какой дополнительный тип услуги �
 servicePrice1 = +prompt('Сколько это будет стоить?'),
 service2 = prompt('Какой дополнительный тип услуги нужен?'),
 servicePrice2 = +prompt('Сколько это будет стоить?'),
-allServicePrices = 0,
-fullPrice = 0,
 rollback = 20,
-servicePercentPrice = 0;
 
 ////////////////////
 
@@ -44,9 +41,9 @@ function getFullPrice(price, servicesPrice) {
 
 ////////////////////
 
-title = getTitle(title);
-allServicePrices = getAllServicePrices(servicePrice1, servicePrice2);
-fullPrice = getFullPrice(screenPrice, allServicePrices);
+const title = getTitle(title),
+allServicePrices = getAllServicePrices(servicePrice1, servicePrice2),
+fullPrice = getFullPrice(screenPrice, allServicePrices),
 servicePercentPrice = getServicePercentPrices(fullPrice, rollback);
 
 //////////////////////
