@@ -1,23 +1,56 @@
 'use strict';
 
-let title = prompt('Как называется ваш проект?').trim(),
-screens = prompt('Какие типы экранов нужно разработать?'),
-screenPrice = +prompt('Сколько будет стоить данная работа?'),
-adaptive = confirm('Нужен ли адаптив на сайте?'),
-service1 = prompt('Какой дополнительный тип услуги нужен?'),
-servicePrice1 = +prompt('Сколько это будет стоить?'),
-service2 = prompt('Какой дополнительный тип услуги нужен?'),
-servicePrice2 = +prompt('Сколько это будет стоить?'),
-rollback = 20,
+let title, 
+screens,
+screenPrice,
+adaptive,
+service1,
+service2,
+rollback = 20;
 
 ////////////////////
 
-const getAllServicePrices = function(price1, price2) {
-   return price1 + price2;
+const isNumber = function(num) {
+   return !isNaN(parseFloat(num)) && isFinite(num);
 };
 
 const getTitle = function(title) {
    return title[0].toUpperCase() + title.slice(1).toLowerCase();
+};
+
+const asking = function() {
+   title = getTitle(prompt('Как называется ваш проект?').trim());
+   screens = prompt('Какие типы экранов нужно разработать?');
+
+   do {
+      screenPrice = prompt('Сколько будет стоить данная работа?').trim();
+   } while(!isNumber(screenPrice));
+
+   adaptive = confirm('Нужен ли адаптив на сайте?');
+};
+
+const getAllServicePrices = function() {
+   let sum = 0,
+   servicePrice;
+
+   for(let i = 0; i < 2; i++) {
+      if(i === 0) {
+         service1 = prompt('Какой дополнительный тип услуги нужен?');
+      }
+      if(i === 1) {
+         service2 = prompt('Какой дополнительный тип услуги нужен?');
+      }
+
+      servicePrice = prompt('Сколько это будет стоить?').trim();
+
+      while(!isNumber(servicePrice)) {
+         servicePrice = prompt('Сколько это будет стоить?').trim();
+      }
+      
+      sum += +servicePrice;
+   }
+
+   return sum;
 };
 
 const getServicePercentPrices = function(price, rollback) {
@@ -41,9 +74,9 @@ function getFullPrice(price, servicesPrice) {
 
 ////////////////////
 
-const title = getTitle(title),
-allServicePrices = getAllServicePrices(servicePrice1, servicePrice2),
-fullPrice = getFullPrice(screenPrice, allServicePrices),
+asking();
+const allServicePrices = getAllServicePrices(),
+fullPrice = getFullPrice(+screenPrice, allServicePrices),
 servicePercentPrice = getServicePercentPrices(fullPrice, rollback);
 
 //////////////////////
