@@ -58,6 +58,13 @@ const appData = {
          while(!appData.isNumber(price)) {
             price = prompt('Сколько это будет стоить?').trim();
          }
+         
+         for (let key in appData.services) {
+            if (appData.services.hasOwnProperty(name)) {
+               appData.services[name + '_' + i] = +price;
+               return;
+            }
+         }
 
          appData.services[name] = +price;
       }
@@ -66,10 +73,9 @@ const appData = {
    },
    addPrices: function() {
 
-      for(let screen of appData.screens) {
-         appData.screenPrice += +screen.price;
-         console.log(appData.screenPrice);
-      }
+      appData.screenPrice = appData.screens.reduce(function(sum, item){
+         return sum + +item.price;
+      }, 0);
 
       for (let key in appData.services) {
          appData.allServicePrices += appData.services[key];
