@@ -8,12 +8,11 @@ const title = document.getElementsByTagName('h1')[0],
       numberItmes = document.querySelectorAll('.other-items.number'),
       rollbackRange = document.querySelector('.rollback input[type=range]'),
       rangeValue = document.querySelector('.rollback .range-value'),
-      totalInputs = document.getElementsByClassName('total-input'),
-      totalInput = function() {
-         for(let i = 0; i < totalInputs.length; i++) {
-            return totalInputs[i];
-         }
-      };
+      total = document.getElementsByClassName('total-input')[0],
+      totalCount= document.getElementsByClassName('total-input')[1],
+      totalCountOther = document.getElementsByClassName('total-input')[2],
+      totalFullCount = document.getElementsByClassName('total-input')[3],
+      totalCountRollback = document.getElementsByClassName('total-input')[4];
 
 let screen = document.querySelectorAll('.screen');
 
