@@ -149,7 +149,6 @@ const appData = {
 
       rangeValue.textContent = value + '%';
       appData.rollback = +value;
-      console.log(appData.rollback);
    },
    showTypeOf: function(variable) {
       return typeof variable;
@@ -158,7 +157,6 @@ const appData = {
    logger: function() {
       console.log(appData.title);
       console.log(`Стоимость разработки сайта ${appData.servicePercentPrice} рублей`);
-      console.log(appData.getRollbackMessage(appData.fullPrice));
       console.log(appData.showTypeOf(appData.title));
       console.log(appData.showTypeOf(appData.fullPrice));
       console.log(appData.showTypeOf(appData.adaptive));
