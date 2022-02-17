@@ -27,6 +27,7 @@ const appData = {
    screenPrice: 0,
    servicePricesPersent: 0,
    servicePricesNumber: 0,
+   servicePercentPrice: 0,
    adaptive: true,
    servicesPersent: {},
    servicesNumber: {},
@@ -41,7 +42,7 @@ const appData = {
       this.addtitle();
 
       startBtn.addEventListener('click', this.checkValue.bind(appData));
-      resetBtn.addEventListener('click', this.reset);
+      resetBtn.addEventListener('click', this.reset.bind(appData));
       screenBtn.addEventListener('click', this.addScreenBlock.bind(appData));
       rollbackRange.addEventListener('input', this.addRollback.bind(appData));
       rollbackRange.addEventListener('input', this.addPrices.bind(appData));
@@ -205,6 +206,19 @@ const appData = {
    reset: function() {
       const elements = document.querySelector('.elements');
       const inputs = elements.querySelectorAll('input:not([type="range"])');
+
+      this.screens = [];
+      this.screenCount = 0;
+      this.screenPrice = 0;
+      this.servicePricesPersent = 0;
+      this.servicePricesNumber = 0;
+      this.adaptive = true;
+      this.servicesPersent = {};
+      this.servicesNumber = {};
+      this.rollback = 0;
+      this.fullPrice = 0;
+      this.cmsPercent = 0;
+      this.servicePercentPrice = 0;
       
       inputs.forEach((input) => {
          input.disabled = false;
@@ -247,19 +261,6 @@ const appData = {
 
       startBtn.style.display = 'flex';
       resetBtn.style.display = 'none';
-
-      this.screens = [];
-      this.screenCount = 0;
-      this.screenPrice = 0;
-      this.servicePricesPersent = 0;
-      this.servicePricesNumber = 0;
-      this.adaptive = true;
-      this.servicesPersent = {};
-      this.servicesNumber = {};
-      this.rollback = 0;
-      this.fullPrice = 0;
-      this.cmsPercent = 0;
-
    },
    logger: function() {
       console.log(this.title);
