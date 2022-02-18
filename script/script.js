@@ -41,11 +41,11 @@ const appData = {
    init: function() {
       this.addtitle();
 
-      startBtn.addEventListener('click', this.checkValue.bind(appData));
-      resetBtn.addEventListener('click', this.reset.bind(appData));
-      screenBtn.addEventListener('click', this.addScreenBlock.bind(appData));
-      rollbackRange.addEventListener('input', this.addRollback.bind(appData));
-      rollbackRange.addEventListener('input', this.addPrices.bind(appData));
+      startBtn.addEventListener('click', this.checkValue.bind(this));
+      resetBtn.addEventListener('click', this.reset.bind(this));
+      screenBtn.addEventListener('click', this.addScreenBlock.bind(this));
+      rollbackRange.addEventListener('input', this.addRollback.bind(this));
+      rollbackRange.addEventListener('input', this.addPrices.bind(this));
       rollbackRange.addEventListener('input', () => {
          totalCountRollback.value = this.servicePercentPrice;
       });
@@ -61,7 +61,7 @@ const appData = {
                } else {
                   mainControlsInput.style.display = 'none';
                }
-               if (appData.isNumber(value)) {
+               if (this.isNumber(value)) {
                   this.cmsPercent += +value;
                }
             });
